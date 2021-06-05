@@ -1,0 +1,108 @@
+<section class="py-7" id="basic">
+    <div class="container">
+        {% for prod in details %}
+            {% if not loop.first %}
+                <div id="{{ prod.title|lower }}"></div>
+            {% endif %}
+            <div class="row {% if not loop.first %}mt-7{% endif %}">
+                <div class="col-md-6 my-auto {% if prod.pos == "right" %}order-1 order-md-2{% endif %}">
+                    <img src="{{ base_url() }}/{{ prod.img }}" class="img-fluid d-block mx-auto" alt="Feature 2">
+                </div>
+                <div class="col-md-6 my-auto text-center text-md-left pt-5 pt-md-0 {% if prod.pos == "right" %}order-2 order-md-1{% endif %}">
+                    <h2 class="display-4">{{ prod.title }}</h2>
+                    <p class="lead text-muted">{{ prod.subtitle }}</p>
+                    <ul class="features-list">
+                        {% for txt in prod.details %}
+                            <li>{{ txt }}</li>
+                        {% endfor %}
+                    </ul>
+                    <p class="lead mt-3">
+                        <a href="{{ base_url() }}/contact" class="btn btn-primary btn-primary d-inline-flex flex-row align-items-center page-scroll">
+                            Anfrage <i class="ml-2 fa fa-angle-right"></i>
+                        </a>
+                    </p>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+</section>
+{#<section class="py-7 bg-light" id="reviews">#}
+{#    <div class="container">#}
+{#        <div class="row">#}
+{#            <div class="col-md-6 col-sm-8 mx-auto text-center">#}
+{#                <h2 class="display-4">Bewertungen</h2>#}
+{#            </div>#}
+{#        </div>#}
+{#        <div class="row mt-5">#}
+{#            <div id="reviewCarousel" class="carousel slide col-12" data-ride="carousel">#}
+{#                <div class="carousel-inner pb-5">#}
+{#                    {% set reviews = getGoogleReviews("15818506657026906304") %}#}
+{#                    {% for review in reviews %}#}
+{#                        <div class="carousel-item {% if loop.first %}active{% endif %}">#}
+{#                            <div class="card border-0 review p-5 raised-box">#}
+{#                                <div class="card-body text-center">#}
+{#                                    <img src="{{ review.photo }}" class="img-review rounded-circle d-block mx-auto" alt="{{ review.name }}">#}
+{#                                    <p class="quote mt-4 px-lg-2 px-xl-4">{{ review.text|nl2br }}</p>#}
+{#                                    <div class="mt-4 small-xl">{{ review.name }}</div>#}
+{#                                    <div class="rating-stars text-primary mt-4">#}
+{#                                        {% for i in 1..5 %}#}
+{#                                            <span class="fa fa-star {% if review.stars < i %}text-muted{% endif %}"></span>#}
+{#                                        {% endfor %}#}
+{#                                    </div>#}
+{#                                </div>#}
+{#                            </div>#}
+{#                        </div>#}
+{#                    {% endfor %}#}
+{#                </div>#}
+{#                {% if reviews|length > 1 %}#}
+{#                    <a class="carousel-control-prev pb-5" href="#reviewCarousel" role="button" data-slide="prev">#}
+{#                        <i class="fa fa-chevron-left fa-2x text-muted" aria-hidden="true"></i>#}
+{#                        <span class="sr-only">Previous</span>#}
+{#                    </a>#}
+{#                    <a class="carousel-control-next pb-5" href="#reviewCarousel" role="button" data-slide="next">#}
+{#                        <i class="fa fa-chevron-right fa-2x text-muted" aria-hidden="true"></i>#}
+{#                        <span class="sr-only">Next</span>#}
+{#                    </a>#}
+{#                {% endif %}#}
+{#            </div>#}
+{#        </div>#}
+{#    </div>#}
+{#</section>#}
+<section class="py-7" id="pricing">
+    {% set prices = module.getByName('prices').getConfig()|json_decode %}
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 mx-auto text-center">
+                <span class="text-muted text-uppercase">{{ prices.title }}</span>
+                <h2 class="display-4">{{ prices.subtitle }}</h2>
+                <p class="lead">{{ prices.description }}</p>
+            </div>
+        </div>
+        <div class="row mt-5">
+            <div class="col-md-11 mx-auto">
+                <div class="card-group pricing-table">
+                    {% for prod in prices.products %}
+                        <div class="card text-center {% if prod.highlight %}text-white bg-primary{% else %}bg-light{% endif %}">
+                            <div class="card-body">
+                                <h4 class="card-title pt-3 {% if prod.highlight %}text-white{% endif %}">{{ prod.label }}</h4>
+                                <h2 class="card-title pt-4 {% if prod.highlight %}text-white{% else %}text-primary{% endif %}">{{ prod.price }}</h2>
+                                <div class="mt-4 {% if prod.highlight %}text-light{% else %}text-muted{% endif %}">{{ prod.subtitle }}</div>
+                                <ul class="list-unstyled pricing-list">
+                                    {% for txt in prod.details %}
+                                        <li>{{ txt }}</li>
+                                    {% endfor %}
+                                </ul>
+                                <a href="{{ home_url }}#{{ prod.label|lower }}" class="btn {% if prod.highlight %}btn-secondary{% else %}btn-primary{% endif %} page-scroll">
+                                    Infos
+                                </a>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+                <div class="text-center text-muted bg-light py-4 border-top border-white">
+                    {{ prices.hint }}
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

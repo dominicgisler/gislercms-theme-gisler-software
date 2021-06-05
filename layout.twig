@@ -1,3 +1,11 @@
+{% set meta_img = page.getMetaImage() %}
+{% if meta_img and (not (meta_img starts with 'http://') and not (meta_img starts with 'https://')) %}
+    {% set meta_img = base_url() ~ '/uploads/' ~ meta_img %}
+{% endif %}
+{% set home_url = base_url() ~ "/" %}
+{% if page.getName() == "home" %}
+    {% set home_url = "" %}
+{% endif %}
 <!DOCTYPE html>
 <html lang="{{ page.getLanguage().getLocale() }}">
     <head>
@@ -5,13 +13,16 @@
         {% include 'meta.twig' %}
         {% include 'style.twig' %}
     </head>
-    <body>
-        <div class="container my-4">
-            {% include 'header.twig' %}
-            {% include 'navigation.twig' %}
-            {% include 'main.twig' %}
-            {% include 'footer.twig' %}
-        </div>
+    <body data-spy="scroll" data-target="#lambda-navbar" data-offset="0">
+        {% include 'header.twig' %}
+        {% include 'products.twig' %}
+
+        {% set details = module.getByName('prices-details').getConfig()|json_decode %}
+        {% if page.getName() == "home" %}
+            {% include 'home.twig' %}
+        {% endif %}
+
+        {% include 'footer.twig' %}
         {% include 'cookie-info.twig' %}
         {% include 'scripts.twig' %}
     </body>

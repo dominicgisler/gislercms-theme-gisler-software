@@ -1,7 +1,12 @@
-<header class="border rounded bg-light text-center p-4 display-4">
-    <div class="row">
-        <a href="{{ base_url() }}" class="col-10 col-sm-8 col-lg-6 m-auto">
-            <img src="{{ base_url() }}/assets/img/logo.png" alt="Logo" class="mw-100">
-        </a>
+{% include 'navigation.twig' %}
+<section class="py-7 py-md-0 bg-hero" id="home" style="background-image: linear-gradient(to right, rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.1)), url('{{ base_url() }}/assets/img/parallex.jpg')">
+    <div class="container">
+        {% if page.getName() != "home" %}<div class="py-4"></div>{% endif %}
+        <div class="row {% if page.getName() == "home" %}vh-md-100{% else %}py-4{% endif %}">
+            <div class="col-md-7 my-md-auto text-center text-md-left">
+                <h1 class="display-3 text-white font-weight-bold">{{ page.getTitle() }}</h1>
+                <p class="lead text-light my-4">{{ page.getMetaDescription()|nl2br }}</p>
+            </div>
+        </div>
     </div>
-</header>
+</section>

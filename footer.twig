@@ -1,12 +1,28 @@
-<footer class="mt-2 border rounded bg-light p-4">
-    <div class="row">
-        <div class="col-7 col-sm-9">
-            Copyright &copy; {{ 'now'|date('Y') }} by Gisler Software
+<footer class="py-6 bg-black" id="footer">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-6">
+                <h5 class="text-white">Gisler Software</h5>
+                <a href="mailto:info@gisler-software.ch">info@gisler-software.ch</a><br>
+                <a href="{{ base_url() }}/impressum">Impressum</a><br>
+                <a href="{{ base_url() }}/datenschutz">Datenschutz</a><br>
+                <a href="https://www.hosttech.ch/?promocode=37388341" target="_blank">Hosting</a>
+            </div>
+            <div class="col-sm-6 text-right">
+                <h5 class="text-white">Produkte</h5>
+                {% for prod in details %}
+                    <a href="{{ home_url }}#{{ prod.title|lower }}" class="page-scroll">{{ prod.title }}</a><br>
+                {% endfor %}
+            </div>
         </div>
-        <div class="col-5 col-sm-3 text-right">
-            <a href="{{ base_url() }}/impressum" class="text-dark">Impressum</a>
-            <span class="d-none d-lg-inline">|</span>
-            <a href="{{ base_url() }}/datenschutz" class="text-dark">Datenschutz</a>
+        <div class="row mt-5">
+            <div class="col-12 text-muted text-center small-xl">
+                <p>&copy; {{ now|date('Y') }} Gisler Software</p>
+                <p class="small">Template by <a href="https://wireddots.com" target="_blank">Wired Dots</a>.</p>
+            </div>
         </div>
     </div>
 </footer>
+<div class="scroll-top">
+    <i class="fa fa-angle-up" aria-hidden="true"></i>
+</div>

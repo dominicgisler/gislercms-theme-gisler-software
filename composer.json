@@ -10,8 +10,6 @@
         }
     ],
     "require": {
-        "fortawesome/font-awesome": "^5.15",
-        "twbs/bootstrap": "^4.3",
-        "components/jquery": "^3.3"
+        "twbs/bootstrap": "^4.3"
     }
 }

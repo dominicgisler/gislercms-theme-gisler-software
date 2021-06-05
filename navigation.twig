@@ -1,34 +1,22 @@
-<nav class="mt-2 border rounded bg-light navbar navbar-expand-lg navbar-light">
-    {% set locale = page.getLanguage().getLocale() %}
-    {% set navigation = module.getByName('navigation-' ~ locale).getConfig()|json_decode %}
-    <a class="navbar-brand d-lg-none" href="#">{{ navigation.label }}</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="fa fa-bars px-1 py-1"></span>
+<nav class="navbar navbar-expand-md navbar-dark navbar-transparent fixed-top sticky-navigation" id="lambda-navbar">
+    <a class="navbar-brand" href="{{ base_url() }}">
+        Gisler Software
+    </a>
+    <button class="navbar-toggler navbar-toggler-right border-0" type="button" data-toggle="collapse"
+            data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+        <span data-feather="menu"></span>
     </button>
-    <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav w-100">
-            {% for elem in navigation.items %}
-                <li class="nav-item {% if elem.items %}dropdown{% endif %}">
-                    {% set href = elem.href %}
-                    {% if not (href starts with 'http://') and not (href starts with 'https://') %}
-                        {% set href = base_url() ~ href %}
-                    {% endif %}
-                    <a class="nav-link {% if elem.items %}dropdown-toggle{% endif %}" href="{{ href }}" {% if elem.items %} role="button" data-toggle="dropdown"{% endif %} {% if elem.target %}target="{{ elem.target }}"{% endif %}>
-                        {{ elem.label }}
-                    </a>
-                    {% if elem.items %}
-                        <div class="dropdown-menu mt-0">
-                            {% for sub in elem.items %}
-                                {% set href = sub.href %}
-                                {% if not (href starts with 'http://') and not (href starts with 'https://') %}
-                                    {% set href = base_url() ~ href %}
-                                {% endif %}
-                                <a class="dropdown-item" href="{{ href }}" {% if sub.target %}target="{{ sub.target }}"{% endif %}>{{ sub.label }}</a>
-                            {% endfor %}
-                        </div>
-                    {% endif %}
+    <div class="collapse navbar-collapse" id="navbarCollapse">
+        {% set nav = module.getByName('navigation').getConfig()|json_decode %}
+        <ul class="navbar-nav ml-auto">
+            {% for item in nav.items %}
+                <li class="nav-item">
+                    <a class="nav-link page-scroll" href="{{ home_url }}{{ item.href }}">{{ item.label }}</a>
                 </li>
             {% endfor %}
         </ul>
+        <form class="form-inline">
+            <a href="{{ base_url }}/contact" class="btn btn-outline-secondary btn-navbar page-scroll">Kontakt</a>
+        </form>
     </div>
 </nav>
