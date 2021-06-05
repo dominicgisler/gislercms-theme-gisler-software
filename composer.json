@@ -1,0 +1,17 @@
+{
+    "name": "dominic/gislercms-theme",
+    "description": "Default theme for GislerCMS",
+    "homepage": "https://github.com/dominicgisler/gislercms-theme",
+    "license": "GPL-3.0-only",
+    "authors": [
+        {
+            "name": "Dominic Gisler",
+            "email": "domgisler@gmail.com"
+        }
+    ],
+    "require": {
+        "fortawesome/font-awesome": "^5.15",
+        "twbs/bootstrap": "^4.3",
+        "components/jquery": "^3.3"
+    }
+}

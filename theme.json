@@ -1,0 +1,12 @@
+{
+  "title": "GislerCMS default",
+  "description": "Default theme for GislerCMS",
+  "homepage": "https://github.com/dominicgisler/gislercms-theme",
+  "license": "GPL-3.0-only",
+  "authors": [
+    {
+      "name": "Dominic Gisler",
+      "email": "domgisler@gmail.com"
+    }
+  ]
+}

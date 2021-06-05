@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="{{ page.getLanguage().getLocale() }}">
+    <head>
+        {% include 'title.twig' %}
+        {% include 'meta.twig' %}
+        {% include 'style.twig' %}
+    </head>
+    <body>
+        <div class="container my-4">
+            {% include 'header.twig' %}
+            {% include 'navigation.twig' %}
+            {% include 'main.twig' %}
+            {% include 'footer.twig' %}
+        </div>
+        {% include 'cookie-info.twig' %}
+        {% include 'scripts.twig' %}
+    </body>
+</html>
